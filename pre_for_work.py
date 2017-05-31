@@ -1,13 +1,12 @@
 import sys
 sys.path.insert(0,"./data_model")		# for dataSet class
-import csv
 import os
 import data_model.DataSet as DS
 import csv
 
 def Csv_Reader(file_path):
 	raw_data=[]
-	with open(file_path,'r') as datafile:
+	with open(file_path,"r",encoding="utf-8") as datafile:
 		reader=csv.reader(datafile,delimiter='\t')
 		for row in reader:
 			raw_data.append(row)
@@ -53,7 +52,6 @@ def Check_Data_China(row):
     day=row[5]
     pm10="-"
     pm25=row[7]
-
     return year,month,day,pm10,pm25
 
 class South_Korea_DataSet:
@@ -75,7 +73,6 @@ class South_Korea_DataSet:
 				else:
 					data=DS.Data(row[0],row[1],year,month,day,pm10,pm25)
 				self.data_set.Add_Data(data)
-				print (data)
 			print(rawdata+" file init compelete!")
 
 class China_DataSet:
