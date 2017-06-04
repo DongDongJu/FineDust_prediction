@@ -12,7 +12,7 @@ if "__main__"==__name__:
     korea_data_set,china_data_set=data_init()
     detail_list=[]
     site_list=[]
-    for data in korea_data_set.data_set:
+    for data in korea_data_set.data_set.data_list:
         if data.site not in site_list:
             site_list.append(data.site)
         if data.detail_site not in detail_list:
