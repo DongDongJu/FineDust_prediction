@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.5.5)  6 JUN 2017 23:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.5.5)  11 JUN 2017 23:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1401,7 +1401,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
 <fig/env.png, id=1, 456.70625pt x 292.09125pt>
 File: fig/env.png Graphic file (type png)
  <use fig/env.png>
-Package pdftex.def Info: fig/env.png used on input line 118.
+Package pdftex.def Info: fig/env.png used on input line 116.
 (pdftex.def)             Requested size: 162.18236pt x 103.72208pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1410,106 +1410,52 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-Package epstopdf Info: Source file: <graph/PARSEC.eps>
-(epstopdf)                    date: 2017-05-05 00:28:57
-(epstopdf)                    size: 56065 bytes
-(epstopdf)             Output file: <graph/PARSEC-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-05-05 00:28:57
-(epstopdf)                    size: 18913 bytes
-(epstopdf)             Command: <repstopdf --outfile=graph/PARSEC-eps-converted
--to.pdf graph/PARSEC.eps>
-(epstopdf)             \includegraphics on input line 126.
-Package epstopdf Info: Output file is already uptodate.
-
-<graph/PARSEC-eps-converted-to.pdf, id=11, 361.35pt x 216.81pt>
-File: graph/PARSEC-eps-converted-to.pdf Graphic file (type pdf)
-
-<use graph/PARSEC-eps-converted-to.pdf>
-Package pdftex.def Info: graph/PARSEC-eps-converted-to.pdf used on input line 1
-26.
-(pdftex.def)             Requested size: 346.89621pt x 208.13853pt.
 LaTeX Font Info:    External font `cmex7' loaded for size
-(Font)              <6> on input line 138.
- [2 <./fig/env.png>]
+(Font)              <6> on input line 129.
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 214.
+<fig/data.png, id=11, 324.46219pt x 316.18124pt>
+File: fig/data.png Graphic file (type png)
+ <use fig/data.png>
+Package pdftex.def Info: fig/data.png used on input line 167.
+(pdftex.def)             Requested size: 162.18236pt x 158.0468pt.
+
+<fig/model.png, id=12, 867.24pt x 487.8225pt>
+File: fig/model.png Graphic file (type png)
+ <use fig/model.png>
+Package pdftex.def Info: fig/model.png used on input line 177.
+(pdftex.def)             Requested size: 162.18236pt x 91.22086pt.
 
 
-Underfull \vbox (badness 1490) has occurred while \output is active []
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
+[2 <./fig/env.png> <./fig/data.png> <./fig/model.png>]
 
 AED: lastpage setting LastPage
-[3 <./graph/PARSEC-eps-converted-to.pdf>] (./fine_dust_prediction.aux) ) 
+[3
+
+] (./fine_dust_prediction.aux) ) 
 Here is how much of TeX's memory you used:
- 12578 strings out of 493013
- 186462 string characters out of 6136994
- 301522 words of memory out of 5000000
- 15715 multiletter control sequences out of 15000+600000
- 52125 words of font info for 152 fonts, out of 8000000 for 9000
+ 12438 strings out of 493013
+ 184015 string characters out of 6136994
+ 294522 words of memory out of 5000000
+ 15626 multiletter control sequences out of 15000+600000
+ 26783 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,16n,92p,1655b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/tex
-live/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2016/texmf-dist/fo
-nts/type1/public/nanumtype1/nanummjbac.pfb><c:/texlive/2016/texmf-dist/fonts/ty
-pe1/public/nanumtype1/nanummjbad.pfb><c:/texlive/2016/texmf-dist/fonts/type1/pu
-blic/nanumtype1/nanummjbb4.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/n
-anumtype1/nanummjbb8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumty
-pe1/nanummjbba.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/na
-nummjbbb.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjb
-bc.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjbc1.pfb
-><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjbc2.pfb><c:/t
-exlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjbc5.pfb><c:/texlive
-/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjbc6.pfb><c:/texlive/2016/
-texmf-dist/fonts/type1/public/nanumtype1/nanummjbc7.pfb><c:/texlive/2016/texmf-
-dist/fonts/type1/public/nanumtype1/nanummjbcc.pfb><c:/texlive/2016/texmf-dist/f
-onts/type1/public/nanumtype1/nanummjbd0.pfb><c:/texlive/2016/texmf-dist/fonts/t
-ype1/public/nanumtype1/nanummjbd5.pfb><c:/texlive/2016/texmf-dist/fonts/type1/p
-ublic/nanumtype1/nanummjbd6.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/
-nanumtype1/nanummjmac.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumt
-ype1/nanummjmad.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/n
-anummjmae.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummj
-mb0.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjmb1.pf
-b><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjmb2.pfb><c:/
-texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjmb3.pfb><c:/texliv
-e/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjmb4.pfb><c:/texlive/2016
-/texmf-dist/fonts/type1/public/nanumtype1/nanummjmb5.pfb><c:/texlive/2016/texmf
--dist/fonts/type1/public/nanumtype1/nanummjmb6.pfb><c:/texlive/2016/texmf-dist/
-fonts/type1/public/nanumtype1/nanummjmb7.pfb><c:/texlive/2016/texmf-dist/fonts/
-type1/public/nanumtype1/nanummjmb8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/
-public/nanumtype1/nanummjmb9.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public
-/nanumtype1/nanummjmba.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanum
-type1/nanummjmbb.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/
-nanummjmbc.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanumm
-jmbd.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjmbe.p
-fb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjmc0.pfb><c:
-/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjmc1.pfb><c:/texli
-ve/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjmc2.pfb><c:/texlive/201
-6/texmf-dist/fonts/type1/public/nanumtype1/nanummjmc4.pfb><c:/texlive/2016/texm
-f-dist/fonts/type1/public/nanumtype1/nanummjmc5.pfb><c:/texlive/2016/texmf-dist
-/fonts/type1/public/nanumtype1/nanummjmc6.pfb><c:/texlive/2016/texmf-dist/fonts
-/type1/public/nanumtype1/nanummjmc7.pfb><c:/texlive/2016/texmf-dist/fonts/type1
-/public/nanumtype1/nanummjmc8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/publi
-c/nanumtype1/nanummjmc9.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanu
-mtype1/nanummjmcc.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1
-/nanummjmcd.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanum
-mjmce.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjmcf.
-pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjmd0.pfb><c
-:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjmd1.pfb><c:/texl
-ive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjmd2.pfb><c:/texlive/20
-16/texmf-dist/fonts/type1/public/nanumtype1/nanummjmd3.pfb><c:/texlive/2016/tex
-mf-dist/fonts/type1/public/nanumtype1/nanummjmd4.pfb><c:/texlive/2016/texmf-dis
-t/fonts/type1/public/nanumtype1/nanummjmd5.pfb><c:/texlive/2016/texmf-dist/font
-s/type1/public/nanumtype1/nanummjmd6.pfb><c:/texlive/2016/texmf-dist/fonts/type
-1/public/nanumtype1/nanummjmd7.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/
-times/utmb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb>
-<c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2016/t
-exmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on fine_dust_prediction.pdf (3 pages, 2480250 bytes).
+ 53i,9n,92p,1655b,379s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/texlive/2016/texmf-dist/fonts/enc/dvips/bas
+e/8r.enc}<c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjbac.p
+fb><c:/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjbbb.pfb><c:
+/texlive/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjbcc.pfb><c:/texli
+ve/2016/texmf-dist/fonts/type1/public/nanumtype1/nanummjbd5.pfb><c:/texlive/201
+6/texmf-dist/fonts/type1/public/nanumtype1/nanummjmad.pfb><c:/texlive/2016/texm
+f-dist/fonts/type1/public/nanumtype1/nanummjmb9.pfb><c:/texlive/2016/texmf-dist
+/fonts/type1/public/nanumtype1/nanummjmd4.pfb><c:/texlive/2016/texmf-dist/fonts
+/type1/urw/times/utmb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/u
+tmbi8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on fine_dust_prediction.pdf (3 pages, 314268 bytes).
 PDF statistics:
- 266 PDF objects out of 1000 (max. 8388607)
- 193 compressed objects within 2 object streams
+ 61 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

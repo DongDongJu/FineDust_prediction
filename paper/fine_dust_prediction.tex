@@ -108,11 +108,9 @@ So, we have predicted by building up a geological matrix consisting of fine dust
 \textbf{\textit{LSTM}}
 Long short-term memory (LSTM) is a recurrent neural network (RNN) architecture (an artificial neural network) proposed in 1997 by Sepp Hochreiter and Jürgen Schmidhuber and further improved in 2000 by Felix Gers et al. Like most RNNs, a LSTM network is universal in the sense that given enough network units it can compute anything a conventional computer can compute, provided it has the proper weight matrix, which may be viewed as its program. Unlike traditional RNNs, an LSTM network is well-suited to learn from experience to classify, process and predict time series when there are time lags of unknown size and bound between important events. Relative insensitivity to gap length gives an advantage to LSTM over alternative RNNs and hidden Markov models and other sequence learning methods in numerous applications. Among other successes, LSTM achieved the best known results in natural language text compression, unsegmented connected handwriting recognition, and in 2009 won the ICDAR handwriting competition. LSTM networks have also been used for automatic speech recognition, and were a major component of a network that in 2013 achieved a record 17.7\% phoneme error rate on the classic TIMIT natural speech dataset. As of 2016, major technology companies including Google, Apple, Microsoft, and Baidu are using LSTM networks as fundamental components in new products. For example, Google uses LSTM for speech recognition on the smartphone, for the smart assistant Allo, and for Google Translate. Apple uses LSTM for the "Quicktype" function on the iPhone and for Siri. Amazon uses LSTM for Amazon Alexa.
 
-
-
 \section{Experiment enviroment}
 
-The experimental environment is shown in Figure ~\ref{fig:parsec} and is an Intel i7-based 8-core machine. I used the GTX1080 as the GPU.
+The experimental environment is shown in Figure ~\ref{fig:xeon} and is an Intel i7-based 8-core machine. I used the GTX1080 as the GPU.
 \begin{figure}[h]
   \begin{center}
      \includegraphics[width=0.3\textwidth]{fig/env.png}
@@ -120,13 +118,6 @@ The experimental environment is shown in Figure ~\ref{fig:parsec} and is an Inte
   \caption{Environment}
   \label{fig:xeon}
 \end{figure}
-
-\begin{figure*}[tb!]
-    \centering
-    \includegraphics[width=4.8in]{graph/PARSEC.eps}
-    \caption{벤치마크 실험 결과.}
-    \label{fig:parsec}
-\end{figure*}
 
 For the measurement environment, software of the same version as Table ~\ref{tab:config} was used.
 And the input data is collected by using the data that is open to the Internet.
@@ -144,121 +135,98 @@ And the input data is collected by using the data that is open to the Internet.
   \label{tab:config}
 \end{table}
 
-
-\section{ 설명}
-본 연구에서는 PARSEC 벤치마크 중 9개의 벤치마크를 대상으로 측정을 하였다. 
-각 워크로드의 설명과, 벤치마크에서 강조하고 있는 Data의 공유 정도 그리고
- 락과 배리어등의 동기화 기법의 수에 대한 정보는  표~\ref{tab:workload}와 같다~\cite{parsecbench}.
+\section{Fine dust prediction}
+This section explains how this differs from the existing rule-based approach and details its model. We modeled the existing methods and theories appropriately.
+The table~\ref{tab:Company} shows the name of the popular forecasting model, whether it is public or not, and information about the model name.
 
 \begin{table}[h!]
-  \caption{워크로드 설명}
+  \caption{Existing model}
   \centering
   \scriptsize 
   \begin{tabular}{l l l l l} \toprule 
-    워크로드명 &  & 데이터 공유 & 동기화 수 & 병렬화 모델\\
+    Name & Public & Model name \\
     \midrule
-    blackscholes & 재정 분석 & 낮음 & 8 & data-parallel\\
+    Cams & No & Copernicus Atrmosphere Monitoring model \\
     \midrule
-    bodytrack & 컴퓨터 비젼 & 높음 & 2661 & data-parallel\\
+    SILAM & Yes & System for Integrated model\\
     \midrule
-    canneal & Engineering & 높음 & 34 & unstructured\\
+    SPRINTARS & Yes & Spectral Radiation-Transport model\\
     \midrule
-    dedup & 엔터프라이즈 저장소 & 높음 & 160598 & pipeline\\
-    \midrule
-    ferret & 유사 검색 & 높음 & 345778 & pipeline\\
-    \midrule
-    freqmine & 데이터 마이닝 & 높음 & 990025 & data-parallel\\
-    \midrule
-    raytrace & 재정 분석 & 낮음 & 23 & data-parallel \\
-    \midrule
-    streamcluster & 데이터 마이닝 & 낮음 & 129918 & data-parallel\\
-    \midrule
-    swaptions & 재정 분석 & 낮음 & 23 & data-parallel \\
+    PANDA & No & -\\
     \bottomrule
   \end{tabular}
-  \label{tab:workload}
+  \label{tab:Company}
 \end{table}
 
-\section{워크로드 및 확장성 실험 결과}
- 이번 장에선 본 연구는 두가지의 실험 결과를 바탕으로 결과를 도출해 내었다. 모든 실험은 15회 기준 평균 값으로 진행되었다.
-첫번째로 각 프로그램마다 지정한 ROI가 프로그램의 확장성에 영향을 끼치는지를 확인하고 실험한 프로그램당 스레드별 실행시간을 기준으로 확장성을 확인해보았다.
-\subsection{ROI (Region Of Interest)}
- 먼저 ROI 부분이란 실제 병렬화되어서 실행되는 구간이다. 이 구간을 제외한 부분은 프로그램 실행시 필요한 초기화 부분이 대부분을 차지하고 있다. 표 ~\ref{tab:ROI_ratio}에서 확인할 수 있는 정적인 실행시간을 제외하고, ROI 부분만 확인 하였을때 모든 프로그램에서 최대 스레드 x0.7 수준의 성능향상이 있었다. 이로 비추어 볼때 실제로 우리가 측정하는 ROI시간들이 프로그램의 성능을 측정한다고 볼 수 있다.
-\begin{table}
-\caption{비 ROI 실행 시간} 
-\label{tab:ROI_ratio}
-\centering
-\begin{tabular}{c|c|c}
-\hline
-워크로드 명 & 평균 실행시간 (s) & 전체 대비 비(\%) \\ \hline
-blackscholes & 21.23 & 12.3 \\ \hline
-bodytrack & 0.10 & 0.2 \\ \hline
-canneal & 47.37 & 8.7 \\ \hline
-dedup & 0.74 & 2.7\\ \hline
-ferret & 0.18 & 0.1\\ \hline
-freqmine & 0.08 & 0.1\\ \hline
-raytrace & 59.52 & 25.9\\ \hline
-streamcluster & 0.01 & 0.1\\ \hline
-swaptions & 0.01 & 0.1\\ \hline
-\end{tabular}
-\end{table}
-\subsection{실험 결과}
-해당 실험결과는 native 입력 데이터셋을 기준으로 스레드 숫자를 늘려가며 기대하는 선형적인 확장성을 보여줄 수 있는지 확인한 결과이다. 가장 좋은 결과를 보여준 blackscholes 를 제외하고 A,B 그룹 2가지로 나누어서 결과를 유추할 수 있다.
-\begin{itemize}
-\item \textbf{blackscholes} :
-해당 프로그램의 비 ROI 실행 시간은 대부분을 입력 값을 초기화하는 곳에 사용한다. 또한 표 ~\ref{tab:workload} 에서 확인 할 수 있듯이 동기화와 데이터 공유의 빈도가 매우 낮다. 이로 인해서 완벽한 선형은 아니지만 다른 8개의 벤치마크에 비해서 가장 높은 멀티스레딩 대비 확장성을 보여준다.
-\item \textbf{A 그룹} (bodytrack,canneal,dedup,ferret,freqmine) : 해당 그룹에 속하는 프로그램들은 모두 동기화와 데이터 공유의 빈도가 매우 높다. 결과도 성능이 비교적 완만하게 증가하다가 오히려 10~20 스레드 사이에서부터 성능의 하락이 일어나고 있다. 따라서 측정된 프로그램들 중 가장 확장성이 낮은 그룹이라고 볼 수 있다.
-\item \textbf{B 그룹} (streamcluster,raytrace,swaption) : 해당 그룹에 속하는 프로그램들은 동기화 빈도는 높지만 데이터공유의 정도가 낮은 그룹이다. 그림 ~\ref{fig:parsec} 에서 그룹 B 에 속해있는 프로그램들의 그래프를 살펴보면, 오히려 스레드 숫자가 50개 정도일 때 까지는 선형적인 확장성을 보이고 있다. 심지어 streamcluster 의 경우 스레드가 낮을때에 국한해서 blackscholes 의 확장성을 훨씬 웃돌고 있다. 하지만 모두 일정 스레드 이후에는 성능이 더이상 증가하고 있지 않다.
-\end{itemize}
+\subsection{Approach}
 
-\begin{table}[]
-\centering
-\caption{결과그룹}
-\label{tab:result_group}
-\begin{tabular}{|c|c|}
-\hline
-\multicolumn{2}{|c|}{데이터 공유}                                                                                                                                         \\ \hline
-높음                                                                                   & 낮음                                                                            \\ \hline
-\begin{tabular}[c]{@{}c@{}}bodytrack,dedup,canneal\\ ferret,freqmine(A)\end{tabular} & \begin{tabular}[c]{@{}c@{}}streamcluster\\ raytrace,swaptions(B)\end{tabular} \\ \hline
-\end{tabular}
-\end{table}
-\section{결론 및 향후 연구}
+Most of the publicly available models address the causal relationship of how the actual fine dust is generated. But we decided to pay more attention to the results more simply. A two-dimensional matrix was generated based on the actual PM2.5 data. In this process, we tried to solve the relation between Chinese fine dust and Korean fine dust by borrowing not only Korean data but also Chinese data. We create a data matrix based on the day and plot it as follows Figure~\ref{fig:data}. Convolution is applied by applying a 3x3 kernel based on this 90x90 matrix. We try to predict by applying such inputs to the LSTM model.
+Our hidden layer size was 10, and the total number of steps was 760 days. Stride did not skip data at 1, and the optimizer used adamoptimizer to learn to minimize loss.
+\begin{figure}[h]
+  \begin{center}
+     \includegraphics[width=0.3\textwidth]{fig/data.png}
+  \end{center}
+  \caption{Data matrix image}
+  \label{fig:data}
+\end{figure}
 
-PARSEC의 ROI 부분만 측정하여 분석한 결과 PASEC의 대부분의 워크로드는 확장성에 문제를 
-가지고 있다. 특히 표 ~\ref{tab:result_group}의 그룹 A와 B 를 비교해보았을때 데이터공유 문제가 스레드가 많아지면 많아질 수록 부각 되는 것을 확인할 수 있었다.  PARSEC은 공유 메모리 기반의 멀티 쓰레드를 이용한 워크로드로 구성되어 있는 벤치마크이다.
-향후 연구로는 본 연구의 결과를 이용하여 리눅스의 매니코어 시스템에서 멀티 쓰레드의 
-문제점을 분석할 예정이다.
+To illustrate the model, we can briefly explain this Figure~\ref{fig:model} . Convolve the basic data in the upper left corner to create new data. It then learns through the recurrent network and creates new predictions with the learned weights. 
+
+\begin{figure}[h]
+  \begin{center}
+     \includegraphics[width=0.3\textwidth]{fig/model.png}
+  \end{center}
+  \caption{Model summary}
+  \label{fig:model}
+\end{figure}
+
+\section{Conclusion and Future Work}
+We predicted a total of 7 matrix based on the model we trained and compared with the rest of the commonly used methods against existing measured data.
+You can see from the Table ~\ref{tab:result}. Amazingly disappointing results came out. The predictability of all existing models is over 80\%, while the model we trained has not even exceeded 65\%.
+So I thought about what was lacking and there were various problems.
+
+\begin{table}[h!]
+  \caption{Result}
+  \centering
+  \scriptsize 
+  \begin{tabular}{l l l l l} \toprule 
+    Name & 1day & 3day & 7day \\
+    \midrule
+    Cams & 89\% &  90\% & 90\%\\
+    \midrule
+    SILAM & 91\% & 88\% & 85\%\\
+    \midrule
+    SPRINTARS & 85\% & 87\% & 91\%\\
+    \midrule
+    PANDA & 88\% & 85\% & 83\%\\
+    \midrule
+    Out Method & 62\% & 52\% & 43\% \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:result}
+\end{table}
+
+First, the data was too small. Our original plan was to split the 24 hour day into hours and model it. However, there was some damage to the acquired data, and there was also a problem with the coverage of the data, so We arbitrarily subdivided the sections to create the input data every day. As a result, the total data did not exceed 1000, and based on the year, the data was based on a little more than two years of data.
+
+Second, We thought of too few factors when constructing the model. We thought that China was the biggest problem, and we thought about this model with the assumption that all the results would be right if we had an association with China. However, as a result, we noticed that there are many other factors as well as China, so we need to model it.
+
+
+
 
 \bibliographystyle{ieeetr}
 \begin{thebibliography}{7}
-\bibitem{Etri}
-정진환, 김강호, 김진미, 정성인. 
-\newblock Manycore 운영체제 동향. 
-\newblock 전자통신 동향 분석 29권 5호, 2014. 
-\bibitem{kesl1}
-경주현, 임성수.
-\newblock 매니코어 시스템을 위한 리눅스 가상 메모리 관리의 락 경합 분석. 
-\newblock 한국정보과학회, 한국정보과학회 학술발표논문집 , 2015.6, 1571-1573, 2015
-\bibitem{kesl2}
-경주현, 윤성민, 임성수.
-\newblock 매니코어 환경에서 로그 기반 동시적 업데이트 기법을 활용한 리눅스 커널 확장성 개선.
-\newblock 한국정보과학회 학술발표논문집 , 2016.12, 512-513, 2016
-\bibitem{AustinTClements2012RCUBalancedTrees}
-Austin~T. Clements, M.~Frans Kaashoek, and Nickolai Zeldovich.
-\newblock Scalable address spaces using {RCU} balanced trees.
-\newblock In {\em Architectural Support for Programming Languages and Operating
-  Systems (ASPLOS 2012)}, pages 199--210, London, UK, February 2012.
-\bibitem{parsecbench}
-Bienia, Christian and Kumar, Sanjeev and Singh, Jaswinder Pal and Li, Kai
-\newblock The PARSEC benchmark suite: characterization and architectural
-implications.
-\newblock PACT '08 Proceedings of the 17th international
-conference on Parallel architectures and compilation techniques Pages 72-81 . 2008.
-\bibitem{Clements2013RadixVM}
-Austin~T. Clements, M.~Frans Kaashoek, and Nickolai Zeldovich.
-\newblock Radixvm: Scalable address spaces for multithreaded applications.
-\newblock In {\em Proceedings of the 8th ACM European Conference on Computer
-  Systems}, EuroSys '13, pages 211--224, New York, NY, USA, 2013.
+\bibitem{n1}
+\newblock F. Bastien, P. Lamblin, R. Pascanu, J. Bergstra, I. Goodfellow, A. Bergeron, N. Bouchard, D. WardeFarley,
+and Y. Bengio. Theano: New features and speed improvements. Deep Learning and Unsupervised
+Feature Learning NIPS 2012 Workshop, 2012.
+\bibitem{n2}
+\newblock Y. Bengio, I. Goodfellow, and A. Courville. Deep Learning. Book in preparation for MIT Press, 2015.
+\bibitem{n3}
+\newblock J. Bergstra, O. Breuleux, F. Bastien, P. Lamblin, R. Pascanu, G. Desjardins, J. Turian, D. Warde-Farley,
+and Y. Bengio. Theano: a CPU and GPU math expression compiler. In Scipy, volume 4, page 3. Austin,
+TX, 2010.
+\bibitem{n4}
+\newblock R. Bridson. Fluid Simulation for Computer Graphics. Ak Peters Series. Taylor \& Francis, 2008.
 
 \end{thebibliography}
 
